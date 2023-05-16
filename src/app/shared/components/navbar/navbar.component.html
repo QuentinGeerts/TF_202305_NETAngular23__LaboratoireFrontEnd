@@ -19,17 +19,41 @@
                     <a class="nav-link active" aria-current="page" routerLink="">Home</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="hasAccess()">
                     <a class="nav-link" routerLink="users">Users</a>
                 </li>
 
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="signin">Connexion</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <ng-container *ngIf="!isLogged">
+                            Compte
+                        </ng-container>
+                        <ng-container *ngIf="isLogged">
+                            {{ user?.pseudo }}
+                        </ng-container>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <ng-container *ngIf="!isLogged">
+                            <a class="dropdown-item" routerLink="signin">Connexion</a>
+                            <a class="dropdown-item" routerLink="signup">Inscription</a>
+                        </ng-container>
+
+                        <ng-container *ngIf="isLogged">
+
+                            <a class="dropdown-item" routerLink="profile">Mon profil</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" routerLink="" (click)="logout()">Déconnexion</a>
+                        </ng-container>
+                    </ul>
                 </li>
+
             </ul>
+
         </div>
 
 

@@ -1,13 +1,17 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { NotAuthorizedComponent } from './shared/components/not-authorized/not-authorized.component';
 
 
 @NgModule({
@@ -15,7 +19,10 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     AppComponent,
     NavbarComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent,
+    NotFoundComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,9 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

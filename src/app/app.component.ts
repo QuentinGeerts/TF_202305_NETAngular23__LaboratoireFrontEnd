@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'TF_202305_NETAngular23__LaboratoireFrontEnd';
 }
