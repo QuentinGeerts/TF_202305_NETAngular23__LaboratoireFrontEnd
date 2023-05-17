@@ -14,6 +14,9 @@ export class SigninComponent implements OnInit {
   form!: FormGroup;
   message: string | null = null;
 
+  passwordType: string = 'password';
+  iconPasswordButton: string = 'fa-eye';
+
   constructor (
     private _fb: FormBuilder,
     private _userService: UserService,
@@ -41,6 +44,17 @@ export class SigninComponent implements OnInit {
       }
     });
 
+  }
+
+  changeVisibilityPassword (): void {
+    if (this.passwordType === 'password') {
+      this.passwordType = 'text';
+      this.iconPasswordButton = 'fa-eye-slash';
+    }
+    else {
+      this.passwordType = 'password';
+      this.iconPasswordButton = 'fa-eye';
+    }
   }
 
 }

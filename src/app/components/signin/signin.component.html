@@ -26,13 +26,14 @@
             <div class="input-group my-3">
                 <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password"
+                    <input [type]="passwordType" class="form-control" id="password"
                         [ngClass]="{ 'is-invalid': form.controls['password'].touched && !form.controls['password'].valid }"
                         formControlName="password" placeholder="yourpassword">
                     <label for="">Mot de passe :</label>
                 </div>
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                    <i class="fa-solid fa-eye"></i>
+                <button class="btn btn-outline-secondary" type="button" id="toggleVisibility"
+                    (click)="changeVisibilityPassword()">
+                    <i class="fa-solid" [ngClass]="iconPasswordButton"></i>
                 </button>
             </div>
 
