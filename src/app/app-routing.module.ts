@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { UserComponent } from './components/user/user.component';
+import { UsersComponent } from './components/users/users.component';
 import { isAdminGuard } from './guards/is-admin.guard';
 import { isLoggedGuard } from './guards/is-logged.guard';
 import { isNotLoggedGuard } from './guards/is-not-logged.guard';
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'users', children: [
-      { path: '', component: UserComponent, canActivate: [isLoggedGuard, isAdminGuard] },
+      { path: '', component: UsersComponent, canActivate: [isLoggedGuard, isAdminGuard] },
     ]
   },
 

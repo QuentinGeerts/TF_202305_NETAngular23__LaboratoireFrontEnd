@@ -25,4 +25,8 @@ export class UserService {
   getById (id: number): Observable<User> {
     return this._httpClient.get<User>(this.api + id);
   }
+
+  get (): Observable<User[]> {
+    return this._httpClient.get<User[]>(this.api);
+  }
 }

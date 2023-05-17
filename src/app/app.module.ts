@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { UsersComponent } from './components/users/users.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { NotAuthorizedComponent } from './shared/components/not-authorized/not-authorized.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { RolePipe } from './shared/pipes/role.pipe';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { NotAuthorizedComponent } from './shared/components/not-authorized/not-a
     SignupComponent,
     ProfileComponent,
     NotFoundComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    UsersComponent,
+    RolePipe,
   ],
   imports: [
     BrowserModule,
