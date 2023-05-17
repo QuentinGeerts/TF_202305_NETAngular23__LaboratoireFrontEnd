@@ -29,4 +29,8 @@ export class UserService {
   get (): Observable<User[]> {
     return this._httpClient.get<User[]>(this.api);
   }
+
+  delete (id: number): Observable<void> {
+    return this._httpClient.delete<void>(this.api + id);
+  }
 }

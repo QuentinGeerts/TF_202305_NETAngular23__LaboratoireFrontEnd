@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { twoPasswordCheckVlidator } from 'src/app/shared/Validators/twoPasswordValidate.validator';
 
 @Component({
   selector: 'app-signup',
@@ -23,6 +24,8 @@ export class SignupComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,25}$/)]],
       passwordConfirmation: ['', [Validators.required]],
       pseudo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+    }, {
+      validators: twoPasswordCheckVlidator
     });
   }
 
@@ -48,6 +51,10 @@ export class SignupComponent implements OnInit {
 
       }
     });
+  }
+
+  displayValidators () {
+    console.log(this.form);
   }
 
 }
