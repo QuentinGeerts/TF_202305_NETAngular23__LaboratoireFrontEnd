@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
   hasAccess (): boolean {
-    return this.user?.role === Role.admin;
+    return this.user?.role === Role.admin || this.user?.role == Role.modo;
   }
 
   logout (): void {

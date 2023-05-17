@@ -14,15 +14,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
-            <th scope="row">{{ user.id }}</th>
-            <td>{{ user.lastname }}</td>
-            <td>{{ user.firstname }}</td>
-            <td>{{ user.pseudo }}</td>
-            <td>{{ user.email }} {{ user.role | role }}</td>
-            <td>{{ user.phoneNumber }}</td>
+        <tr *ngFor="let u of users">
+            <th scope="row">{{ u.id }}</th>
+            <td>{{ u.lastname }}</td>
+            <td>{{ u.firstname }}</td>
+            <td>{{ u.pseudo }}</td>
+            <td>{{ u.email }} {{ u.role | role }}</td>
+            <td>{{ u.phoneNumber }}</td>
             <td><button class="btn">✏️</button></td>
-            <td><button class="btn">❌</button></td>
+            <td><button class="btn" *ngIf="u.id !== user.id">❌</button></td>
         </tr>
     </tbody>
 </table>
