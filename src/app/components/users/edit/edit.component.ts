@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { Roles } from 'src/app/enums/roles.enum';
 import { User } from 'src/app/models/user.model';
+import { SessionService } from 'src/app/services/session.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,7 +19,12 @@ export class EditComponent implements OnInit {
   isError: boolean = false;
   message: string = '';
 
-  constructor (private _route: ActivatedRoute, private _userService: UserService, private _fb: FormBuilder) { }
+  constructor (
+    private _route: ActivatedRoute,
+    private _userService: UserService,
+    private _fb: FormBuilder,
+    private _sessionService: SessionService
+  ) { }
 
   ngOnInit (): void {
     this.user = this._route.snapshot.data['user'];
@@ -56,6 +62,7 @@ export class EditComponent implements OnInit {
           next: () => {
             this.message = `Les données ont bien été modifiées.`;
             this.isError = false;
+            this._sessionService.update({ ...this.user, pseudo, firstname, lastname });
           },
           error: (err) => {
             this.message = `Erreur lors de la modification des données.`;
@@ -80,10 +87,27 @@ export class EditComponent implements OnInit {
         });
     }
 
-    if (hasChangedRole && this.user.role === Roles.admin) {
-
+    if (hasChangedRole && this._sessionService.user?.role === Roles.admin) {
+      this._userService
+        .patchRole(this.user.id, { role: +this.form.controls['role'].value })
+        .subscribe({
+          next: () => {
+            this.message = `Le rôle a bien été modifié.`;
+            this.isError = false;
+          },
+          error: (err) => {
+            this.message = `Erreur lors de la modification du rôle`;
+            this; this.isError = true;
+          }
+        });
     }
 
   }
 
+  canChangeRole (): boolean {
+    if (this._sessionService.user?.role === Roles.admin
+      && this.user.id !== this._sessionService.user.id) return true;
+    return false;
+
+  }
 }

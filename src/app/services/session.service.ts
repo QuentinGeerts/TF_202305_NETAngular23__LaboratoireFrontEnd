@@ -39,9 +39,7 @@ export class SessionService implements OnInit {
     this.token = token;
 
     this._userService.getById(decodedToken.nameid).subscribe((user) => {
-      user.token = token;
-      localStorage.setItem('user', JSON.stringify(user));
-      this.onUser$.next(user);
+      this.update(user);
     });
   }
 
@@ -57,5 +55,11 @@ export class SessionService implements OnInit {
     }
 
     return false;
+  }
+
+  update (user: User) {
+    user.token = this.token;
+    localStorage.setItem('user', JSON.stringify(user));
+    this.onUser$.next(user);
   }
 }

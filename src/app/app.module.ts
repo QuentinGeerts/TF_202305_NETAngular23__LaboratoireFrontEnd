@@ -19,6 +19,7 @@ import { CustomInputComponent } from './shared/components/custom-input/custom-in
 import { SafeHTMLPipe } from './shared/pipes/safe-html.pipe';
 import { CustomSelectComponent } from './shared/components/custom-select/custom-select.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { BackDirective } from './shared/directives/back.directive';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     SafeHTMLPipe,
     CustomSelectComponent,
     AlertComponent,
+    BackDirective,
   ],
   imports: [
     BrowserModule,

@@ -30,4 +30,15 @@ export class CustomSelectComponent {
     return r;
   }
 
+  ngOnInit () {
+
+    if (this.disabledSelect) {
+      this.formGroupSelect.get(this.formControlNameSelect)?.disable();
+    }
+    else {
+      this.formGroupSelect.get(this.formControlNameSelect)?.enable();
+    }
+
+  }
+
 }

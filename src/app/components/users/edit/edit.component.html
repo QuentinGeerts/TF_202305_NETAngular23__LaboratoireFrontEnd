@@ -1,5 +1,7 @@
 <h2>Éditer un utilisateur</h2>
 
+<button class="btn btn-light" appBack>Retour</button>
+
 <app-alert *ngIf="message" [isError]="isError" [message]="message" />
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -75,7 +77,7 @@
         fontAwesomeIcon='<i class="fa-solid fa-tag"></i>'
         [formGroupSelect]="form"
         formControlNameSelect="role"
-        [disabledSelect]="true"
+        [disabledSelect]="!canChangeRole()"
       />
     </div>
   </div>
