@@ -1,60 +1,113 @@
 <h1>S'inscrire</h1>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" (input)="displayValidators()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ng-container *ngIf="message">
+    <div
+      class="alert"
+      [ngClass]="{ 'alert-danger': isError, 'alert-success': !isError }"
+    >
+      {{ message }}
+    </div>
+  </ng-container>
 
-    <ng-container *ngIf="message">
-        <div class="alert" [ngClass]="{ 'alert-danger': isError, 'alert-success': !isError }">{{ message }}</div>
-    </ng-container>
+  <div class="input-group my-3">
+    <span class="input-group-text" id="addon-wrapping"
+      ><i class="fa-solid fa-at"></i
+    ></span>
+    <div class="form-floating">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        placeholder="name@example.com"
+        [ngClass]="{
+          'is-invalid':
+            form.controls['email'].touched && !form.controls['email'].valid
+        }"
+      />
+      <label for="email">Email :</label>
+    </div>
+  </div>
 
-    <div class="input-group my-3">
-        <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-at"></i></span>
+  <div class="row my-3">
+    <div class="col-12 col-lg-6">
+      <div class="input-group my-3">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="fa-solid fa-lock"></i
+        ></span>
         <div class="form-floating">
-            <input type="email" class="form-control" id="email" formControlName="email" placeholder="name@example.com"
-                [ngClass]="{ 'is-invalid': form.controls['email'].touched && !form.controls['email'].valid }">
-            <label for="email">Email :</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            placeholder="yourpassword"
+            [ngClass]="{
+              'is-invalid':
+                form.controls['password'].touched &&
+                !form.controls['password'].valid
+            }"
+          />
+          <label for="password">Mot de passe :</label>
         </div>
+      </div>
+      <ng-container *ngIf="form.controls['passwordConfirmation'].touched">
+        <div
+          *ngIf="form.errors"
+          class="form-text text-danger"
+          id="basic-addon4"
+        >
+          {{ form.errors["name"] }}
+        </div>
+      </ng-container>
     </div>
 
-    <div class="row my-3">
-
-        <div class="col-12 col-lg-6">
-            <div class="input-group my-3">
-                <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="password" formControlName="password"
-                        placeholder="yourpassword"
-                        [ngClass]="{ 'is-invalid': form.controls['password'].touched && !form.controls['password'].valid }">
-                    <label for="password">Mot de passe :</label>
-                </div>
-            </div>
-            <ng-container *ngIf="form.controls['passwordConfirmation'].touched">
-                <div *ngIf="form.errors" class="form-text text-danger" id="basic-addon4">
-                    {{ form.errors['name'] }}
-                </div>
-            </ng-container>
-        </div>
-
-        <div class="col-12 col-lg-6">
-            <div class="input-group  my-3">
-                <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="confirmPassword"
-                        formControlName="passwordConfirmation" placeholder="yourpassword"
-                        [ngClass]="{ 'is-invalid': form.controls['passwordConfirmation'].touched && !form.controls['passwordConfirmation'].valid }">
-                    <label for="confirmPassword" class="form-label">Confirmer le mot de passe :</label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="input-group  my-3">
-        <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
+    <div class="col-12 col-lg-6">
+      <div class="input-group my-3">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="fa-solid fa-lock"></i
+        ></span>
         <div class="form-floating">
-            <input type="email" class="form-control" id="pseudo" formControlName="pseudo" placeholder="your pseudo"
-                [ngClass]="{ 'is-invalid': form.controls['pseudo'].touched && !form.controls['pseudo'].valid }">
-            <label for="pseudo" class="form-label">Pseudo :</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            formControlName="passwordConfirmation"
+            placeholder="yourpassword"
+            [ngClass]="{
+              'is-invalid':
+                form.controls['passwordConfirmation'].touched &&
+                !form.controls['passwordConfirmation'].valid
+            }"
+          />
+          <label for="confirmPassword" class="form-label"
+            >Confirmer le mot de passe :</label
+          >
         </div>
+      </div>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+  <div class="input-group my-3">
+    <span class="input-group-text" id="addon-wrapping"
+      ><i class="fa-solid fa-user"></i
+    ></span>
+    <div class="form-floating">
+      <input
+        type="email"
+        class="form-control"
+        id="pseudo"
+        formControlName="pseudo"
+        placeholder="your pseudo"
+        [ngClass]="{
+          'is-invalid':
+            form.controls['pseudo'].touched && !form.controls['pseudo'].valid
+        }"
+      />
+      <label for="pseudo" class="form-label">Pseudo :</label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>

@@ -1,0 +1,25 @@
+<div class="input-group my-3">
+  <span
+    class="input-group-text"
+    id="addon-wrapping"
+    [innerHTML]="fontAwesomeIcon | safeHTML"
+  >
+  </span>
+  <div class="form-floating" [formGroup]="formGroupInput">
+    <input
+      [type]="typeInput"
+      class="form-control"
+      [id]="idInput"
+      [ngClass]="{
+        'is-invalid':
+          formGroupInput.controls[formControlNameInput].touched &&
+          !formGroupInput.controls[formControlNameInput].valid,
+        'form-control-plaintext': disabledInput
+      }"
+      [formControlName]="formControlNameInput"
+      [placeholder]="placeholderInput"
+      [readOnly]="disabledInput"
+    />
+    <label [for]="idInput">{{ labelInput }}</label>
+  </div>
+</div>

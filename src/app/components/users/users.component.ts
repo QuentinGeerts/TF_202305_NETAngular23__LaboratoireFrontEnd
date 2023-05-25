@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { mergeMap } from 'rxjs';
-import { Role } from 'src/app/enums/role.enum';
+import { Roles } from 'src/app/enums/roles.enum';
 import { User } from 'src/app/models/user.model';
 import { SessionService } from 'src/app/services/session.service';
 import { UserService } from 'src/app/services/user.service';
@@ -31,8 +31,8 @@ export class UsersComponent implements OnInit {
 
   hasPermissionToDelete (target: User): boolean {
     if (this.user.id === target.id) return false;
-    if (this.user.role === Role.modo && target.role == Role.admin) return false;
-    if (this.user.role === Role.admin || Role.modo) return true;
+    if (this.user.role === Roles.modo && target.role == Roles.admin) return false;
+    if (this.user.role === Roles.admin || Roles.modo) return true;
 
     return false;
   }

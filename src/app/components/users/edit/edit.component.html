@@ -1,0 +1,84 @@
+<h2>Éditer un utilisateur</h2>
+
+<app-alert *ngIf="message" [isError]="isError" [message]="message" />
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-12 col-lg-4">
+      <app-custom-input
+        idInput="firstname"
+        typeInput="text"
+        labelInput="Prénom :"
+        placeholderInput="John"
+        fontAwesomeIcon='<i class="fa-solid fa-address-card"></i>'
+        [formGroupInput]="form"
+        formControlNameInput="firstname"
+      />
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <app-custom-input
+        idInput="lastname"
+        typeInput="text"
+        labelInput="Nom :"
+        placeholderInput="Doe"
+        fontAwesomeIcon='<i class="fa-solid fa-address-card"></i>'
+        [formGroupInput]="form"
+        formControlNameInput="lastname"
+      />
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <app-custom-input
+        idInput="pseudo"
+        typeInput="text"
+        labelInput="Pseudo :"
+        placeholderInput="Heyo"
+        fontAwesomeIcon='<i class="fa-solid fa-user"></i>'
+        [formGroupInput]="form"
+        formControlNameInput="pseudo"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <app-custom-input
+        idInput="email"
+        typeInput="email"
+        labelInput="Email :"
+        placeholderInput="your@email.com"
+        fontAwesomeIcon='<i class="fa-solid fa-at"></i>'
+        [formGroupInput]="form"
+        formControlNameInput="email"
+        [disabledInput]="true"
+      />
+    </div>
+
+    <div class="col-12 col-lg-3">
+      <app-custom-input
+        idInput="phoneNumber"
+        typeInput="tel"
+        labelInput="Téléphone :"
+        placeholderInput="0123456789"
+        fontAwesomeIcon='<i class="fa-solid fa-phone"></i>'
+        [formGroupInput]="form"
+        formControlNameInput="phoneNumber"
+      />
+    </div>
+
+    <div class="col-12 col-lg-3">
+      <app-custom-select
+        idSelect="role"
+        labelSelect="Rôle :"
+        placeholderSelect="User"
+        fontAwesomeIcon='<i class="fa-solid fa-tag"></i>'
+        [formGroupSelect]="form"
+        formControlNameSelect="role"
+        [disabledSelect]="true"
+      />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Modifier</button>
+</form>

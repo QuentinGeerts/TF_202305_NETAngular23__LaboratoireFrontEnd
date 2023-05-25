@@ -5,9 +5,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { EditComponent } from './components/users/edit/edit.component';
 import { UsersComponent } from './components/users/users.component';
 import { isAdminGuard } from './guards/is-admin.guard';
 import { isLoggedGuard } from './guards/is-logged.guard';
+import { isModoGuard } from './guards/is-modo.guard';
 import { isNotLoggedGuard } from './guards/is-not-logged.guard';
 import { userResolver } from './resolvers/user.resolver';
 import { NotAuthorizedComponent } from './shared/components/not-authorized/not-authorized.component';
@@ -18,11 +20,22 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'users', children: [
-      { path: '', component: UsersComponent, canActivate: [isLoggedGuard, isAdminGuard] },
+      { path: '', component: UsersComponent, canActivate: [isLoggedGuard, isAdminGuard || isModoGuard] },
+      {
+        path: ':id', children: [
+          { path: 'details/update', component: EditComponent, resolve: { user: userResolver }, canActivate: [isLoggedGuard, isAdminGuard] },
+          { path: 'details', component: ProfileComponent, resolve: { user: userResolver }, canActivate: [isLoggedGuard, isAdminGuard || isModoGuard] },
+        ]
+      },
     ]
   },
 
-  { path: 'profile', component: ProfileComponent, resolve: { user: userResolver }, canActivate: [isLoggedGuard] },
+  {
+    path: 'profile', children: [
+      { path: '', component: ProfileComponent, resolve: { user: userResolver }, canActivate: [isLoggedGuard] },
+      { path: 'update', component: EditComponent, resolve: { user: userResolver } }
+    ]
+  },
 
   // Sign In / Sign Up
   { path: 'signin', component: SigninComponent, canActivate: [isNotLoggedGuard] },

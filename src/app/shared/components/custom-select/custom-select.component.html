@@ -1,0 +1,25 @@
+<div class="input-group my-3">
+  <label
+    class="input-group-text"
+    for="inputGroupSelect01"
+    [innerHTML]="fontAwesomeIcon | safeHTML"
+  >
+  </label>
+  <div class="form-floating" [formGroup]="formGroupSelect">
+    <select
+      class="form-select"
+      [id]="idSelect"
+      [ngClass]="{
+        'is-invalid':
+          formGroupSelect.controls[formControlNameSelect].touched &&
+          !formGroupSelect.controls[formControlNameSelect].valid
+      }"
+      [formControlName]="formControlNameSelect"
+    >
+      <option [value]="role.id" *ngFor="let role of roles">
+        {{ role.role }}
+      </option>
+    </select>
+    <label [for]="idSelect">{{ labelSelect }}</label>
+  </div>
+</div>

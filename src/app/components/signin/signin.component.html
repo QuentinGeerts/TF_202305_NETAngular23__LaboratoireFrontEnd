@@ -1,49 +1,71 @@
 <h1>Se connecter</h1>
 
 <div class="row my-3">
+  <div class="col-12 col-lg-7">
+    <img class="img-fluid" src="assets/login.png" alt="" />
+  </div>
 
-    <div class="col-12 col-lg-7">
-        <img class="img-fluid" src="assets/login.png" alt="">
-    </div>
+  <div class="col-12 col-lg-5 d-flex align-items-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex-fill">
+      <ng-container *ngIf="message">
+        <div class="alert alert-danger my-3">{{ message }}</div>
+      </ng-container>
 
-    <div class="col-12 col-lg-5 d-flex align-items-center">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" class=" flex-fill">
+      <div class="input-group my-3">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="fa-solid fa-at"></i
+        ></span>
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            [ngClass]="{
+              'is-invalid':
+                form.controls['email'].touched && !form.controls['email'].valid
+            }"
+            formControlName="email"
+            placeholder="name@example.com"
+          />
+          <label for="email">Email :</label>
+        </div>
+      </div>
 
-            <ng-container *ngIf="message">
-                <div class="alert alert-danger my-3">{{ message }}</div>
-            </ng-container>
+      <div class="input-group my-3">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="fa-solid fa-lock"></i
+        ></span>
+        <div class="form-floating">
+          <input
+            [type]="passwordType"
+            class="form-control"
+            id="password"
+            [ngClass]="{
+              'is-invalid':
+                form.controls['password'].touched &&
+                !form.controls['password'].valid
+            }"
+            formControlName="password"
+            placeholder="yourpassword"
+          />
+          <label for="">Mot de passe :</label>
+        </div>
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          id="toggleVisibility"
+          (click)="changeVisibilityPassword()"
+        >
+          <i class="fa-solid icon" [ngClass]="iconPasswordButton"></i>
+        </button>
+      </div>
 
-            <div class="input-group my-3">
-                <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-at"></i></span>
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="email"
-                        [ngClass]="{ 'is-invalid': form.controls['email'].touched && !form.controls['email'].valid }"
-                        formControlName="email" placeholder="name@example.com">
-                    <label for="email">Email :</label>
-                </div>
-            </div>
+      <button type="submit" class="btn btn-primary my-3">Se connecter</button>
+    </form>
+  </div>
 
-            <div class="input-group my-3">
-                <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
-                <div class="form-floating">
-                    <input [type]="passwordType" class="form-control" id="password"
-                        [ngClass]="{ 'is-invalid': form.controls['password'].touched && !form.controls['password'].valid }"
-                        formControlName="password" placeholder="yourpassword">
-                    <label for="">Mot de passe :</label>
-                </div>
-                <button class="btn btn-outline-secondary" type="button" id="toggleVisibility"
-                    (click)="changeVisibilityPassword()">
-                    <i class="fa-solid icon" [ngClass]="iconPasswordButton"></i>
-                </button>
-            </div>
-
-            <button type="submit" class="btn btn-primary my-3">Se connecter</button>
-        </form>
-    </div>
-
-    <p class="d-flex justify-content-center my-3">
-        Pas encore de compte ?
-        <a class="mx-1" routerLink="/signup">Inscris-toi</a> !
-    </p>
-
+  <p class="d-flex justify-content-center my-3">
+    Pas encore de compte ?
+    <a class="mx-1" routerLink="/signup">Inscris-toi</a> !
+  </p>
 </div>

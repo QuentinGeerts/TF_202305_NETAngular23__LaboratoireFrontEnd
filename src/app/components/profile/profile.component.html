@@ -1,15 +1,29 @@
 <h1>Profil</h1>
 
-<div class="card my-3" style="width: 18rem;">
-    <div class="card-header">
-        <h5 class="card-title">{{ user.firstname }} {{ user.lastname }}</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngIf="user.pseudo">Pseudo : {{ user.pseudo }}</li>
-        <li class="list-group-item" *ngIf="user.phoneNumber">Téléphone : {{ user.phoneNumber }}</li>
-        <li class="list-group-item" *ngIf="user.email">Email : {{ user.email }}</li>
-        <li class="list-group-item" *ngIf="user.role">Rôle : {{ role }}</li>
-    </ul>
+<div class="card my-3" style="width: 20rem">
+  <div class="card-header">
+    <h5 class="card-title">{{ user.firstname }} {{ user.lastname }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngIf="user.pseudo">
+      <i class="fa-solid fa-user"></i>
+      Pseudo : {{ user.pseudo }}
+    </li>
+    <li class="list-group-item" *ngIf="user.phoneNumber">
+      <i class="fa-solid fa-phone"></i>
+      Téléphone : {{ user.phoneNumber }}
+    </li>
+    <li class="list-group-item" *ngIf="user.email">
+      <i class="fa-solid fa-at"></i>
+      Email : {{ user.email }}
+    </li>
+    <li class="list-group-item">
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+      Rôle : {{ role }}
+    </li>
+  </ul>
 </div>
 
-<button class="btn btn-secondary">Modifier le profil</button>
+<button class="btn btn-secondary" routerLink="update">
+  Modifier le profil
+</button>

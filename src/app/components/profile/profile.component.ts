@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Role } from 'src/app/enums/role.enum';
+import { Roles } from 'src/app/enums/roles.enum';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -13,8 +13,8 @@ export class ProfileComponent implements OnInit {
   user!: User;
 
   get role (): string {
-    if (this.user.role === Role.admin) return "admin";
-    if (this.user.role === Role.modo) return "modo";
+    if (this.user.role === Roles.admin) return "admin";
+    if (this.user.role === Roles.modo) return "modo";
     return "user";
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Role } from 'src/app/enums/role.enum';
+import { Roles } from 'src/app/enums/roles.enum';
 import { User } from 'src/app/models/user.model';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
   hasAccess (): boolean {
-    return this.user?.role === Role.admin || this.user?.role == Role.modo;
+    return this.user?.role === Roles.admin || this.user?.role == Roles.modo;
   }
 
   logout (): void {
