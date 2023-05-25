@@ -23,13 +23,14 @@ export class SessionService implements OnInit {
     private _jwtService: JwtService
   ) {
     this.onUser$ = new BehaviorSubject<User | null>(this.user);
+    this.onUser$.next(this.user);
     if (this.user && this.user.token) {
       this.token = this.user.token;
     }
   }
 
   ngOnInit (): void {
-    this.onUser$.next(this.user);
+
   }
 
   begin (token: string) {
@@ -48,5 +49,13 @@ export class SessionService implements OnInit {
     localStorage.clear();
     this.onUser$.next(null);
     this.token = '';
+  }
+
+  checkValidityTokenExp () {
+    if (this.user && this.user.token) {
+      return +(new Date().getTime() / 1000).toFixed(0) <= this._jwtService.decodeToken(this.user.token).exp;
+    }
+
+    return false;
   }
 }
