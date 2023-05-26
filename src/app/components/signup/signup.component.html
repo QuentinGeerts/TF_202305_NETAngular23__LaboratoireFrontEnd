@@ -1,14 +1,7 @@
 <h1>S'inscrire</h1>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <ng-container *ngIf="message">
-    <div
-      class="alert"
-      [ngClass]="{ 'alert-danger': isError, 'alert-success': !isError }"
-    >
-      {{ message }}
-    </div>
-  </ng-container>
+  <app-alert [isError]="isError" [message]="message" />
 
   <div class="input-group my-3">
     <span class="input-group-text" id="addon-wrapping"
